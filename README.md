@@ -8,19 +8,7 @@ The full 20-minute Go tutorial is here: https://learn.temporal.io/getting_starte
 
 ## Basic instructions
 
-### Step 0: Temporal Server
-
-Make sure [Temporal Server is running](https://docs.temporal.io/docs/server/quick-install/) first:
-
-```bash
-git clone https://github.com/temporalio/docker-compose.git
-cd  docker-compose
-docker-compose up
-```
-
-Leave it running. You can use the Temporal Web UI at [localhost:8080](localhost:8080) which is currently in Beta. To use the legacy Temporal Web UI, use the [localhost:8088](localhost:8088) URL instead. There should be no workflows visible in the dashboard right now.
-
-### Step 1: Clone this Repository
+### Step 0: Clone this Repository
 
 In another terminal instance, clone this repo and run this application.
 
@@ -28,6 +16,16 @@ In another terminal instance, clone this repo and run this application.
 git clone https://github.com/ivan-mudrak/money-transfer-project-template-rust
 cd money-transfer-project-template-rust
 ```
+
+### Step 1: Run Temporal Server
+
+From the root of the project:
+
+```bash
+docker-compose up
+```
+
+Leave it running. You can use the Temporal Web UI at [localhost:8080](localhost:8080) which is currently in Beta. To use the legacy Temporal Web UI, use the [localhost:8088](localhost:8088) URL instead. There should be no workflows visible in the dashboard right now.
 
 ### Step 2: Start Actix Web server
 
