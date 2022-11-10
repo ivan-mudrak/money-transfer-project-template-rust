@@ -1,6 +1,6 @@
 # Temporal Rust Project Template
 
-This is a simple project for demonstrating Temporal with the Rust SDK.
+This is a simple project for demonstrating Temporal with the Rust SDK and Actix Web server.
 
 It is derived from sismilar Go example.
 
@@ -29,20 +29,33 @@ git clone https://github.com/ivan-mudrak/money-transfer-project-template-rust
 cd money-transfer-project-template-rust
 ```
 
-### Step 2: Run the Workflow
+### Step 2: Start Actix Web server
 
 ```bash
 cargo run --bin main
 ```
-
-Observe that Temporal Web reflects the workflow, but it is still in "Running" status. This is because there is no Workflow or Activity Worker yet listening to the `TRANSFER_MONEY_TASK_QUEUE` task queue to process this work.
+It will start web-server on localhost:800.
 
 ### Step 3: Run the Worker
 
-In YET ANOTHER terminal instance, run the worker. Notice that this worker hosts both Workflow and Activity functions.
+In ANOTHER terminal instance, run the worker. Notice that this worker hosts both Workflow and Activity functions.
 
 ```bash
 cargo run --bin worker
+```
+
+### Step 4: Execute workflow
+
+In YET ANOTHER terminal instance, send post request using curl. 
+
+```bash
+curl --location --request POST 'localhost:8000/transfer' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "source_account": "11-11",
+    "target_account": "22-22",
+    "amount": 100
+}'
 ```
 
 Now you can see the workflow run to completion. You can also see the worker polling for workflows and activities in the task queue at [http://localhost:8080/namespaces/default/task-queues/TRANSFER_MONEY_TASK_QUEUE](http://localhost:8080/namespaces/default/task-queues/TRANSFER_MONEY_TASK_QUEUE).
